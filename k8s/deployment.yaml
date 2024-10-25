@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nodejs-app
-        image: kandelo/nodejs-app:latest
+        image: omarbanna/orange:latest
         ports:
         - containerPort: 8080
 ---
