@@ -1,37 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  nodejs-deployment
-  namespace: default
-  labels:
-    app:  nodejs-deployment
+  name: nodejs-app
 spec:
+  replicas: 2
   selector:
     matchLabels:
-      app: nodejs
-  replicas: 3
+      app: nodejs-app
   template:
     metadata:
       labels:
-        app:  nodejs
+        app: nodejs-app
     spec:
       containers:
-      - name:  nodejs
-        image:  omarbanna/orange:latest
+      - name: nodejs-app
+        image: omarbanna/orange:latest
         ports:
-        - containerPort:  3000
+        - containerPort: 8080
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nodejs-service
-  namespace: default
+  name: nodejs-app
 spec:
-  selector:
-    app: nodejs
-  type: NodePort
+  type: LoadBalancer
   ports:
-  - port: 3000 
-    targetPort: 3000 
-    nodePort: 30001
-    
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: nodejs-app
+
