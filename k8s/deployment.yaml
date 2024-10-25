@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nodejs-app
-        image: omarbanna/orange:latest
+        image: your-dockerhub-username/nodejs-app:latest
         ports:
         - containerPort: 8080
 ---
